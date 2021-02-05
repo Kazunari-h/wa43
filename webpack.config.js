@@ -1,13 +1,16 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: './src/index.js',
+  entry: './src/js/index.js',
 
   // ファイルの出力設定
   output: {
     //  出力ファイルのディレクトリ名
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/dist/`,
     // 出力ファイル名
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
   },
 
   module: {
@@ -36,4 +39,14 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    // CSSファイルを外だしにするプラグイン
+    new MiniCssExtractPlugin({
+      // ファイル名を設定します
+      filename: "css/style.css",
+    }),
+    new HtmlWebpackPlugin({
+      filename: "html/index.html"
+    })
+  ],
 }
